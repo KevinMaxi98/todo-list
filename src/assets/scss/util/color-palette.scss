@@ -8,3 +8,28 @@ $secondaryColor: #4c9cc3;
 $evenColor: #edf8fe;
 $oddColor: #f5f9f9;
 $progress: #f7e257;
+
+/* Styles determinate progress bars (with a value property) */
+progress[value] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Styles indeterminate progress bars (without a value property) */
+progress:not([value]) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  border: 1px solid gray;
+  background: transparent;
+  border-radius: 4px;
+}
+
+progress::-webkit-progress-value {
+  background-color: yellow;
+  border-radius: 3px;
+}

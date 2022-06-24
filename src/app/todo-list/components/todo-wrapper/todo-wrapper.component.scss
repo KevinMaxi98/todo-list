@@ -1,12 +1,13 @@
 @import "../../../../assets/scss/util/color-palette.scss";
+@import "../../../../assets/scss/util/spaces";
 
 .container {
   &__header {
     text-align: center;
   }
-  &__list-todo {
+  &__row-todo {
     display: grid;
-    grid-template-columns: 8% auto 30% 8% 8%;
+    grid-template-columns: 8% auto 9% 8%;
     grid-gap: 8px;
     padding: 14px 12px;
     color: #1e6395;
@@ -22,6 +23,39 @@
     grid-template-columns: 89% 11%;
     grid-gap: 8px;
     padding: 8px 0 16px;
+  }
+  &__checkbox-container {
+    align-self: center;
+  }
+  &__info-container {
+    display: flex;
+    @media screen and (min-width: 320px) and (max-width: 720px) {
+      display: block;
+    }
+  }
+  &__show-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__footer {
+    display: block;
+    @media screen and (min-width: 720px){
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__no-todos {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__subtitle {
+    color: #1e6395;
+
   }
 }
 

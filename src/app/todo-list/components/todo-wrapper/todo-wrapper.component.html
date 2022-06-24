@@ -1,32 +1,56 @@
 <app-header></app-header>
 
 <div class="container__search">
-  <div>
-    <app-icon-button
-      [classNameIcon]="'fa fa-plus'"
-      (actionClick)="addTodo()"
-    ></app-icon-button>
-  </div>
+    <div>
+        <app-input [frmTodo]="frmTodo" placeholder="Buscar Tarea" (onInputEvent)="onSearchTodo($event)"></app-input>
+    </div>
+    <div>
+        <app-icon-button
+                [classNameIcon]="'fa fa-plus'"
+                (actionClick)="addTodo()"
+        ></app-icon-button>
+    </div>
 </div>
+<div class="container__no-todos" *ngIf="this.listPayments.length === 0; else list_todo">
+    <em class="fa fa-info-circle icon--color"></em>
+    <h4 class="container__subtitle pt-16">No tienes tareas registradas</h4>
+</div>
+<ng-template #list_todo>
+    <div class="container__list-todo" *ngFor="let todo of listPayments">
+        <div class="container__row-todo"
+             *ngIf="this.searchString === '' || todo.description.toUpperCase().includes(searchString.toUpperCase())">
+            <div class="container__checkbox-container">
+                <input
+                        type="checkbox"
+                        (change)="onChangeStatus(todo)"
+                        [checked]="todo.status === 1"
+                />
+            </div>
+            <div class="container__info-container">
+                <div [ngClass]="{ 'todo-finished': todo.status === 1, 'pr-16': true}">
+                    {{ todo.description }}
+                </div>
+                <div class="txt-date" [ngClass]="{ 'todo-finished': todo.status === 1 }">
+                    {{ todo.finish_at | date: "dd/MM/yyyy" }}
+                </div>
+            </div>
 
-<div class="container__list-todo" *ngFor="let todo of listPayments">
-  <div>
-    <input
-      type="checkbox"
-      (change)="onChangeStatus(todo)"
-      [checked]="todo.status === 1"
-    />
-  </div>
-  <div [ngClass]="{ 'todo-finished': todo.status === 1 }">
-    {{ todo.description }}
-  </div>
-  <div class="txt-date" [ngClass]="{ 'todo-finished': todo.status === 1 }">
-    {{ todo.finish_at | date: "dd/MM/yyyy" }}
-  </div>
-  <div>
-    <em class="fa fa-pencil icon--color"></em>
-  </div>
-  <div>
-    <em class="fa fa-trash-o icon--color"></em>
-  </div>
-</div>
+            <div>
+                <em class="fa fa-pencil icon--color" (click)="editTodo(todo)"></em>
+            </div>
+            <div>
+                <em class="fa fa-trash-o icon--color" (click)="removeTodo(todo.id)"></em>
+            </div>
+        </div>
+
+    </div>
+    <div class="container__footer pt-16">
+        <app-progress-bar [doneTodos]="getDoneTodos()" [totalTodos]="getAllTodosLength()"></app-progress-bar>
+        <div class="container__show-button-container">
+            <app-icon-button [classNameIcon]="'fa fa-list'" [align]="'last'"
+                             [textButton]="showLabels[showStatus]" (actionClick)="changeShowStatus()"></app-icon-button>
+        </div>
+    </div>
+</ng-template>
+
+

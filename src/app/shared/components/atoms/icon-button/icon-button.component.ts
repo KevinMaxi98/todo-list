@@ -9,6 +9,7 @@ export class IconButtonComponent implements OnInit {
 
   @Input() textButton = '';
   @Input() classNameIcon = '';
+  @Input() align: 'first' | 'last' = 'first';
   @Input() disabled?: boolean;
   @Input() typeButton: string = 'primary' || 'secundary';
   @Output() actionClick = new EventEmitter<any>();

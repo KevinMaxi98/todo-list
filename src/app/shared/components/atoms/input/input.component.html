@@ -1,8 +1,9 @@
 <div [formGroup]="frmTodo">
-  <input
+  <input #input
     type="text"
     formControlName="descriptionTodo"
     placeholder="{{ placeholder }}"
+    (input)="onInput($event)"
     (keyup)="onKeyUp($event)"
   />
 </div>

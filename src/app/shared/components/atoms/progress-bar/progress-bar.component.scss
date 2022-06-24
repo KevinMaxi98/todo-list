@@ -1,0 +1,23 @@
+@import "../../../../../assets/scss/util/spaces";
+@import "../../../../../assets/scss/util/color-palette";
+
+.progress-bar:before {
+    content:attr(data-text);
+    position:absolute;
+  font-size: 12px;
+    left:0;
+    right:0;
+}
+.progress-bar {
+  text-align:center;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position:relative;
+
+  &__progress {
+    width: 185px;
+    height: 50px;
+  }
+}

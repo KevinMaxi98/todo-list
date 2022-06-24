@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "test-watch": "jest --watchAll",
     "test-coverage": "jest --coverage",
     "build": "ng build",

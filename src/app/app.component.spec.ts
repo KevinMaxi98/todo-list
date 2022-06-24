@@ -8,6 +8,11 @@ import {ResponseTodo} from './todo-list/interfaces/response';
 import {RouterTestingModule} from '@angular/router/testing';
 import {of} from 'rxjs';
 import {AddTodoComponent} from './todo-list/components/add-todo/add-todo.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {InputComponent} from './shared/components/atoms/input/input.component';
+import {IconButtonComponent} from './shared/components/atoms/icon-button/icon-button.component';
+import {ProgressBarComponent} from './shared/components/atoms/progress-bar/progress-bar.component';
+import {HeaderComponent} from './shared/components/molecules/header/header.component';
 
 const todoListResponse: ResponseTodo = {
     success: true,
@@ -42,6 +47,8 @@ describe('TodoList App Test', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
+                FormsModule,
+                ReactiveFormsModule,
                 RouterTestingModule.withRoutes([
                     {path: '', component: TodoWrapperComponent},
                     {path: 'todo', component: AddTodoComponent}
@@ -49,7 +56,11 @@ describe('TodoList App Test', () => {
             ],
             declarations: [
                 TodoWrapperComponent,
-                AddTodoComponent
+                AddTodoComponent,
+                InputComponent,
+                IconButtonComponent,
+                ProgressBarComponent,
+                HeaderComponent
             ],
             providers: [
                 TodoService,
@@ -62,7 +73,6 @@ describe('TodoList App Test', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(TodoWrapperComponent);
         todoWrapperComponent = fixture.componentInstance;
-        fixture.detectChanges();
         todoService = fixture.debugElement.injector.get(TodoService);
         jest.spyOn(todoService, 'getTodoList').mockImplementation(() => of(todoListResponse));
     });
@@ -77,6 +87,7 @@ describe('TodoList App Test', () => {
     });
 
     it('Should create a new todo', async () => {
+
     });
 
     /**

@@ -6,6 +6,7 @@ import {HeaderComponent} from '../../../shared/components/molecules/header/heade
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InputComponent} from '../../../shared/components/atoms/input/input.component';
 import {IconButtonComponent} from '../../../shared/components/atoms/icon-button/icon-button.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('AddTodoComponent', () => {
     let component: AddTodoComponent;
@@ -13,7 +14,8 @@ describe('AddTodoComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [RouterTestingModule, FormsModule, ReactiveFormsModule,
+            imports: [HttpClientTestingModule,
+                RouterTestingModule, FormsModule, ReactiveFormsModule,
             ],
             declarations: [AddTodoComponent, HeaderComponent, InputComponent, IconButtonComponent],
             providers: [TodoService],
